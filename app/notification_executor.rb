@@ -1,4 +1,4 @@
-class NotificationExecutor
+class LinuxNotificationExecutor
   def initialize()
     require 'gir_ffi'
     GirFFI.setup :Notify
@@ -7,7 +7,7 @@ class NotificationExecutor
 
   def execute(n)    
     hello = Notify::Notification.new(n.header, n.generate_html_body, n.icon)
-    p hello.show
+    hello.show
   end
 end
 

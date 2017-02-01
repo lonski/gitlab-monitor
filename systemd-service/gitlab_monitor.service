@@ -1,0 +1,14 @@
+# REMEMBER to replace:
+#   <path_to_gitlab_notify> - with your location of gitlab_notify
+
+[Unit]
+Description=Gitlab monitor
+
+[Service]
+ExecStart=bundle exec ruby <path_to_gitlab_notify>/app/gitlab_monitor.rb
+WorkingDirectory=<path_to_gitlab_notify>/app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

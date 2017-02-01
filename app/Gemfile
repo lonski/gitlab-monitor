@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+gem 'gitlab', git: 'https://github.com/NARKOZ/gitlab.git'
+gem 'gir_ffi'
