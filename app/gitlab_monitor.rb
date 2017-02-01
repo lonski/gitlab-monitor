@@ -1,9 +1,11 @@
 require 'gitlab'
+
 require_relative 'notification'
-require_relative 'notification_executor'
+require_relative 'linux_notification_executor'
 
 require_relative 'rules/merge_request_ready_to_merge'
 require_relative 'rules/pipeline_failed'
+require_relative 'rules/new_merge_request'
 
 require_relative 'configuration'
 

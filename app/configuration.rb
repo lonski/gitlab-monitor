@@ -16,11 +16,12 @@ module GitlabMonitor
   #Monitored project URL
   PROJECT_URL       = 'https://wrgitlab.int.net.nokia.com/data-platforms/codeine'
   #Implementation of class responsible for showing notifications in system
-  NOTIFIER          = LinuxNotificationExecutor.new
+  NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
 
   RULES = [
     MergeRequestReadyToMerge.new(upvotes_required: 2),
-    PipelineFailed.new(branch: 'feature/decider')
+    PipelineFailed.new(branch: 'feature/decider'),
+    NewMergeRequest.new
   ]
 
 end
