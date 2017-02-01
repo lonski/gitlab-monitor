@@ -4,7 +4,7 @@ Monitors gitlab project and show system notifications when an event occurs
 
 ## Installation
 
-1. Linux
+### Linux
 
 Copy service file to user services directory:
 
