@@ -1,12 +1,9 @@
-# REMEMBER to replace:
-#   <path_to_gitlab_notify> - with your location of gitlab_notify
-
 [Unit]
 Description=Gitlab monitor
 
 [Service]
-ExecStart=bundle exec ruby <path_to_gitlab_notify>/app/gitlab_monitor.rb
-WorkingDirectory=<path_to_gitlab_notify>/app
+ExecStart=/usr/bin/bash -lc "bundle exec ruby GITLAB_MONITOR_DIR/app/gitlab_monitor.rb"
+WorkingDirectory=GITLAB_MONITOR_DIR/app
 Restart=always
 RestartSec=5
 
