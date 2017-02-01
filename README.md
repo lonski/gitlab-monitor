@@ -24,7 +24,7 @@ To manualy run gitlab monitor:
 bundle exec ruby gitlab_monitor.rb
 ```
 
-### Systemd service
+## Systemd service
 
 Copy service file to user services directory:
 
