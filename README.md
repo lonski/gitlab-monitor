@@ -12,7 +12,7 @@ Make sure you have bundler installed:
 gem install bundler
 ```
 
-Enter gitlab_notify directory and install dependencies:
+Enter gitlab_notify/app directory and install dependencies:
 
 ```sh
 bundle install
