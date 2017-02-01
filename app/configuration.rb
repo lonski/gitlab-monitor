@@ -3,7 +3,7 @@ module GitlabMonitor
   #Gitlab API URL
   GITLAB_URL        = "https://wrgitlab.int.net.nokia.com/api/v3"
   #Token generated on Gitlab in Profile Settings > Access Tokens
-  ACCESS_TOKEN      = "LZUyh46BiRkypCzUDyFw"
+  ACCESS_TOKEN      = "XXX"
 
   PROXY_HOST        = "10.144.1.10"
   PROXY_PORT        = 8080
