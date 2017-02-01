@@ -11,7 +11,7 @@ module GitlabMonitor
     def run
       notifications = []
 
-      Gitlab.pipelines(PROJECT_ID, per_page: 30)
+      Gitlab.pipelines(PROJECT_ID, per_page: 10)
         .select{ |p| p.ref == @branch }
         .select{ |p| p.status == 'failed' }
         .select{ |mr| !@already_notified.include?(mr.id) }
