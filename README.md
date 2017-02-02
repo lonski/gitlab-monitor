@@ -2,6 +2,8 @@
 
 Monitors gitlab project and show system notifications when an event occurs
 
+![](iscreen1.png)
+
 ## Installation
 
 Install ruby interpreter. For linux use RVM.
