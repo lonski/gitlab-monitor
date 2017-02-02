@@ -22,9 +22,7 @@ module GitlabMonitor
     #Monitors if any merge request is ready to be merged
     MergeRequestReadyToMerge.new(upvotes_required: 2),
     #Monitors if any pipeline of selected branch has failed
-    PipelineFailed.new(branch: 'develop'),
-    PipelineFailed.new(branch: 'master'),
-    PipelineFailed.new(branch: 'feature/decider'),
+    PipelineFailed.new(branches: ['develop', 'master', 'feature/decider']),
     #Notifies about newly created merge requests
     NewMergeRequest.new
   ]

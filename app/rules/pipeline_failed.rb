@@ -4,7 +4,7 @@ module GitlabMonitor
   class PipelineFailed
 
     def initialize(options = {})
-      @branch = options[:branch] || 'develop'
+      @branch = options[:branches] || ['develop']
       @already_notified = []
     end
 
@@ -12,14 +12,14 @@ module GitlabMonitor
       notifications = []
 
       Gitlab.pipelines(PROJECT_ID, per_page: 10)
-        .select{ |p| p.ref == @branch }
+        .select{ |p| @branch.include?(p.ref)  }
         .select{ |p| p.status == 'failed' }
         .select{ |mr| !@already_notified.include?(mr.id) }
         .each do |p|
            notifications <<
             Notification.new(
               header: 'Pipeline failed',
-              body: "Ran by <b>#{p.user.name}</b> on branch <i>#{@branch}</i>",
+              body: "Ran by <b>#{p.user.name}</b> on branch <i>#{p.ref}</i>",
               link: "#{PROJECT_URL}/pipelines/#{p.id}",
               icon: 'dialog-error'
             )
