@@ -14,6 +14,9 @@ module GitlabMonitor
   def self.start
     apply_config
 
+    #Run all rules, but do not process notifications, to set initial state
+    RULES.each { |r| r.run }
+
     while true
       RULES.each do |rule|
         rule.run.each{ |notification| NOTIFIER.execute(notification) }
