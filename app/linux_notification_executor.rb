@@ -12,4 +12,3 @@ class LinuxNotificationExecutor
     hello.show
   end
 end
-
