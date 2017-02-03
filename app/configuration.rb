@@ -5,7 +5,7 @@ module GitlabMonitor
   #Token generated on Gitlab in Profile Settings > Access Tokens
   ACCESS_TOKEN      = "<enter_your_access_token>"
 
-  PROXY_HOST        = "10.144.1.10"
+  PROXY_HOST        = "127.0.0.1"
   PROXY_PORT        = 8080
 
   #Amount of sleep between executing rules

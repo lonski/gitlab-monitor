@@ -36,7 +36,7 @@ module GitlabMonitor
         config.private_token  = ACCESS_TOKEN
       end
 
-      Gitlab.http_proxy(PROXY_HOST, PROXY_PORT)
+      Gitlab.http_proxy(PROXY_HOST, PROXY_PORT) unless PROXY_HOST.empty?
     end
 end
 
