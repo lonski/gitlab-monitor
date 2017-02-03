@@ -1,3 +1,9 @@
+#############################################################################
+# Monitors project pipelines for failures.                                  #
+# Pools last 10 pipelines for each defined branch and checks if any failed, #
+# if yes, then a notification is generated                                  #
+#############################################################################
+
 require_relative '../notification'
 
 module GitlabMonitor

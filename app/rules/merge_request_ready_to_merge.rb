@@ -1,3 +1,9 @@
+#############################################################################
+# Monitors upvotes count on merge requests.                                 #
+# Generates a notify if any merge request reaches minimum upvotes required  #
+# configured in constructor.                                                #
+#############################################################################
+
 require_relative '../notification'
 
 module GitlabMonitor

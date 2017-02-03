@@ -1,3 +1,9 @@
+#############################################################################
+# Monitors project for new merge requests.                                  #
+# If new merge request is created, it has 'opened' state,                   #
+# then a notification is generated                                          #
+#############################################################################
+
 require_relative '../notification'
 
 module GitlabMonitor
