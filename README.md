@@ -16,7 +16,8 @@ gem install bundler
 
 Enter gitlab_notify/app directory and install dependencies:
 
-*Linux:* ```sh
+*Linux:* 
+```sh
 bundle install --without windows
 ```
 
