@@ -9,7 +9,7 @@ Monitors gitlab project and show system notifications when an event occurs. Runn
 
 ### 1. Ruby interpreter
 
-Install ruby interpreter. For linux use RVM, for windows RubyInstaller.
+Install ruby interpreter. For linux use [RVM](https://rvm.io/), for windows RubyInstaller.
 
 ### 2. Bundler
 
