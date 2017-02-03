@@ -1,31 +1,39 @@
 # Gitlab monitor
 
-Monitors gitlab project and show system notifications when an event occurs
+Monitors gitlab project and show system notifications when an event occurs. Running on Windows and Linux.
 
 ![](screen1.png)
 ![](screen2.png)
 
 ## Installation
 
+### 1. Ruby interpreter
+
 Install ruby interpreter. For linux use RVM, for windows RubyInstaller.
 
-Make sure you have bundler installed:
+### 2. Bundler
+
+Make sure you have bundler gem installed:
 
 ```sh
 gem install bundler
 ```
 
+### 3. Dependencies installation
+
 Enter gitlab_notify/app directory and install dependencies:
 
-** Linux **
+*Linux:* 
 ```sh
 bundle install --without windows
 ```
 
-**Windows**
+*Windows:*
 ```sh
 bundle install --without linux
 ```
+
+### 4. Running Gitlab Monitor
 
 To manualy run gitlab monitor:
 
@@ -33,7 +41,7 @@ To manualy run gitlab monitor:
 bundle exec ruby gitlab_monitor.rb
 ```
 
-## Systemd service (Linux only)
+## Running systemd service (Linux only)
 
 Copy service file to user services directory:
 
