@@ -73,3 +73,6 @@ To add it to windows autostart create a shortcut of `start_in_background.vbs` fi
 ## Configuration
 
 Edit file `app/configuration.rb`
+
+* To run on Linux use `LinuxNotificationExecutor` as implementation of `NOTIFIER`
+* To run on Windows use `WindowsNotificationExecutor` as implementation of `NOTIFIER`

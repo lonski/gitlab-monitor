@@ -15,9 +15,9 @@ module GitlabMonitor
   PROJECT_ID        = 666
   #Monitored project URL - used by some rules to construct valid link
   PROJECT_URL       = '<your_gitlab_url>/<your_project_name>'
-  #Implementation of class responsible for showing notifications in system
-  NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
-  #NOTIFIER          = WindowsNotificationExecutor.new
+  #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
+  NOTIFIER          = LinuxNotificationExecutor.new(time: 5)
+  #NOTIFIER          = WindowsNotificationExecutor.new(time: 5)
 
   RULES = [
     #Monitors if any merge request is ready to be merged

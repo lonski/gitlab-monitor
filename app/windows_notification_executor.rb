@@ -3,7 +3,6 @@ module GitlabMonitor
     def initialize(options = {})
       @options = options
       @options[:type] ||= :info
-      @options[:time] ||= 5 #seconds
     end
 
     def execute(n)  

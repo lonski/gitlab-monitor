@@ -1,7 +1,7 @@
 module GitlabMonitor
   class LinuxNotificationExecutor
     def initialize(options = {})
-      @timeout = options[:timeout_ms] || 0
+      @timeout = options[:time] * 1000 || 0
       require 'gir_ffi'
       GirFFI.setup :Notify
       Notify.init("Gitlab Monitor")
