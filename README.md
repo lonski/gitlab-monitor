@@ -2,7 +2,7 @@
 
 Monitors gitlab project and show system notifications when an event occurs
 
-![](iscreen1.png)
+![](screen1.png)
 
 ## Installation
 
