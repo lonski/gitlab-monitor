@@ -11,9 +11,9 @@ module GitlabMonitor
   #Amount of sleep between executing rules
   POOL_INTERVAL_SEC = 10
 
-  #Monitored project id
-  PROJECT_ID        = 1375
-  #Monitored project URL
+  #Monitored project id (you can find is in address bar)
+  PROJECT_ID        = 666
+  #Monitored project URL - used by some rules to construct valid link
   PROJECT_URL       = '<your_gitlab_url>/<your_project_name>'
   #Implementation of class responsible for showing notifications in system
   #NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
