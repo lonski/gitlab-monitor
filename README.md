@@ -1,6 +1,6 @@
 # Gitlab monitor
 
-Monitors gitlab project and show system notifications when an event occurs
+Monitors gitlab project and show system notifications when an event occurs. Running on Windows and Linux.
 
 ![](screen1.png)
 
