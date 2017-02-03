@@ -3,6 +3,7 @@
 Monitors gitlab project and show system notifications when an event occurs
 
 ![](screen1.png)
+![](screen2.png)
 
 ## Installation
 
@@ -21,7 +22,7 @@ Enter gitlab_notify/app directory and install dependencies:
 bundle install --without windows
 ```
 
-** Windows **
+**Windows**
 ```sh
 bundle install --without linux
 ```

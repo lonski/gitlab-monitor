@@ -24,7 +24,6 @@ module GitlabMonitor
               icon: Icon::ERROR
             )
           @already_notified << p.id
-          puts p.web_url
       end
 
       notifications
