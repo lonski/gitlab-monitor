@@ -16,12 +16,12 @@ gem install bundler
 
 Enter gitlab_notify/app directory and install dependencies:
 
-**Linux**
+*Linux*
 ```sh
 bundle install --without windows
 ```
 
-**Windows**
+*Windows*
 ```sh
 bundle install --without linux
 ```
