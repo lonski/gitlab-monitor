@@ -61,6 +61,15 @@ Enable service:
 systemctl --user enable gitlab_monitor
 ```
 
+## Autostarting on windows
+
+There are two starters prepared in 'windows-starter' directory:
+
+1. windows-starter/gitlab_monitor.bat - runs app in command line window
+2. windows-starter/start_in_backgroud.vbs - runs above batch file in the background
+
+To add it to windows autostart create a shortcut of 'start_in_background.vbs' file, and move it to startup folder. Startup folder can be opened by running 'shell:startup' in windows 'run' window. In general it is located in 'C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'.
+
 ## Configuration
 
 Edit file `app/configuration.rb`
