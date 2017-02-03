@@ -1,4 +1,12 @@
 source "https://rubygems.org"
 
 gem 'gitlab', git: 'https://github.com/NARKOZ/gitlab.git'
-gem 'gir_ffi'
+
+group :linux do
+	gem 'gir_ffi'
+end
+
+group :windows do
+	gem 'rb-notifu'
+	gem 'launchy'
+end

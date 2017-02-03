@@ -20,7 +20,7 @@ module GitlabMonitor
               header: 'Merge request ready to merge',
               body: mr.title,
               link: mr.web_url,
-              icon: 'dialog-information'
+              icon: Icon::INFO
             )
           @already_notified << mr.id
       end

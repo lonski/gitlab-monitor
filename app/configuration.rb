@@ -16,7 +16,8 @@ module GitlabMonitor
   #Monitored project URL
   PROJECT_URL       = '<your_gitlab_url>/<your_project_name>'
   #Implementation of class responsible for showing notifications in system
-  NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
+  #NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
+  NOTIFIER          = WindowsNotificationExecutor.new
 
   RULES = [
     #Monitors if any merge request is ready to be merged
@@ -25,6 +26,7 @@ module GitlabMonitor
     PipelineFailed.new(branches: ['develop', 'master']),
     #Notifies about newly created merge requests
     NewMergeRequest.new
+    #DummyRule.new
   ]
 
 end

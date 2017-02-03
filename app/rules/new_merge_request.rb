@@ -19,7 +19,7 @@ module GitlabMonitor
               header: 'New merge request',
               body: "#{mr.title} by <i>#{mr.author.name}</i>",
               link: mr.web_url,
-              icon: 'dialog-information'
+              icon: Icon::INFO
             )
           @last_known = [@last_known, mr.id].max
       end

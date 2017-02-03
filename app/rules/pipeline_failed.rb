@@ -21,7 +21,7 @@ module GitlabMonitor
               header: 'Pipeline failed',
               body: "Ran by <b>#{p.user.name}</b> on branch <i>#{p.ref}</i>",
               link: "#{PROJECT_URL}/pipelines/#{p.id}",
-              icon: 'dialog-error'
+              icon: Icon::ERROR
             )
           @already_notified << p.id
           puts p.web_url
