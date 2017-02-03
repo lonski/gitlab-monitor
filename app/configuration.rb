@@ -16,17 +16,17 @@ module GitlabMonitor
   #Monitored project URL - used by some rules to construct valid link
   PROJECT_URL       = '<your_gitlab_url>/<your_project_name>'
   #Implementation of class responsible for showing notifications in system
-  #NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
-  NOTIFIER          = WindowsNotificationExecutor.new
+  NOTIFIER          = LinuxNotificationExecutor.new(timeout_ms: 1000 * 60 * 60)
+  #NOTIFIER          = WindowsNotificationExecutor.new
 
   RULES = [
     #Monitors if any merge request is ready to be merged
-    #MergeRequestReadyToMerge.new(upvotes_required: 2),
+    MergeRequestReadyToMerge.new(upvotes_required: 2),
     #Monitors if any pipeline of selected branch has failed
-    #PipelineFailed.new(branches: ['develop', 'master']),
+    PipelineFailed.new(branches: ['develop', 'master']),
     #Notifies about newly created merge requests
-    #NewMergeRequest.new
-    DummyRule.new
+    NewMergeRequest.new
+    #DummyRule.new
   ]
 
 end
