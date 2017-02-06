@@ -5,6 +5,7 @@ module GitlabMonitor
   #Token generated on Gitlab in Profile Settings > Access Tokens
   ACCESS_TOKEN      = "<enter_your_access_token>"
 
+  USE_SSL           = true
   PROXY_HOST        = ""
   PROXY_PORT        = 8080
 

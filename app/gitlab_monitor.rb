@@ -34,6 +34,7 @@ module GitlabMonitor
       Gitlab.configure do |config|
         config.endpoint       = GITLAB_URL
         config.private_token  = ACCESS_TOKEN
+        config.httparty = {verify: USE_SSL}
       end
 
       Gitlab.http_proxy(PROXY_HOST, PROXY_PORT) unless PROXY_HOST.empty?
