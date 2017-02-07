@@ -8,6 +8,7 @@ require_relative 'rules/merge_request_ready_to_merge'
 require_relative 'rules/pipeline_failed'
 require_relative 'rules/new_merge_request'
 require_relative 'rules/dummy_rule'
+require_relative 'rules/merge_request_upvoted'
 
 require_relative 'configuration'
 

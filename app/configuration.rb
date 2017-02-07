@@ -26,7 +26,9 @@ module GitlabMonitor
     #Monitors if any pipeline of selected branch has failed
     PipelineFailed.new(branches: ['develop', 'master']),
     #Notifies about newly created merge requests
-    NewMergeRequest.new
+    NewMergeRequest.new,
+    #Notifiec when opened merge request upvotes count raises
+    MergeRequestUpvoted.new
     #DummyRule.new
   ]
 
