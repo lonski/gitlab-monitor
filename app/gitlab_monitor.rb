@@ -15,11 +15,25 @@ require_relative 'configuration'
 module GitlabMonitor
 
   def self.start
+
+    puts \
+    "  ____ _ _   _       _       __  __             _ _             \n" \
+    " / ___(_) |_| | __ _| |__   |  \\/  | ___  _ __ (_) |_ ___  _ __ \n" \
+    "| |  _| | __| |/ _` | '_ \\  | |\\/| |/ _ \\| '_ \\| | __/ _ \\| '__|\n" \
+    "| |_| | | |_| | (_| | |_) | | |  | | (_) | | | | | || (_) | |   \n" \
+    " \\____|_|\\__|_|\\__,_|_.__/  |_|  |_|\\___/|_| |_|_|\\__\\___/|_|   \n" \
+    "                                        2017 by Michał Łoński\n\n"
+
     apply_config
 
     #Run all rules, but do not process notifications, to set initial state
-    RULES.each { |r| r.run }
+    puts "Initializing rules..."
+    RULES.each do |r|
+      puts "\t => #{r.class.name}"
+      r.run
+    end
 
+    puts "\nMonitor started."
     while true
       RULES.each do |rule|
         rule.run.each{ |notification| NOTIFIER.execute(notification) }
@@ -32,13 +46,21 @@ module GitlabMonitor
   private
 
     def self.apply_config
+      puts "Applying Gitlab configuration..."
+
+      puts "\t=> Gitlab URL: #{GITLAB_URL}"
+      puts "\t=> SSL: #{USE_SSL}"
+
       Gitlab.configure do |config|
         config.endpoint       = GITLAB_URL
         config.private_token  = ACCESS_TOKEN
         config.httparty = {verify: USE_SSL}
       end
 
-      Gitlab.http_proxy(PROXY_HOST, PROXY_PORT) unless PROXY_HOST.empty?
+      unless PROXY_HOST.empty?
+        puts "=> Using proxy: #{PROXY_HOST}:#{PROXY_PORT}"
+        Gitlab.http_proxy(PROXY_HOST, PROXY_PORT)
+      end
     end
 end
 
