@@ -17,8 +17,7 @@ module GitlabMonitor
   #Monitored project URL - used by some rules to construct valid link
   PROJECT_URL       = '<your_gitlab_url>/<your_project_name>'
   #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
-  NOTIFIER          = LinuxNotificationExecutor.new(time: 5)
-  #NOTIFIER          = WindowsNotificationExecutor.new(time: 5)
+  NOTIFIER          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) ? WindowsNotificationExecutor : LinuxNotificationExecutor).new(time: 5)
 
   RULES = [
     #Monitors if any merge request is ready to be merged
@@ -29,7 +28,7 @@ module GitlabMonitor
     NewMergeRequest.new,
     #Notifies when opened merge request upvotes count raises
     MergeRequestUpvoted.new,
-    #Notifies about new comments. 
+    #Notifies about new comments.
     #params:
     #  mr_authors - filter MR by authors
     #  skip_comment_authors - filter comments by authors
