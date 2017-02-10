@@ -27,8 +27,10 @@ module GitlabMonitor
     PipelineFailed.new(branches: ['develop', 'master']),
     #Notifies about newly created merge requests
     NewMergeRequest.new,
-    #Notifiec when opened merge request upvotes count raises
-    MergeRequestUpvoted.new
+    #Notifies when opened merge request upvotes count raises
+    MergeRequestUpvoted.new,
+    #Notifies when a new comment to opened merge request appears
+    NewMergeRequestComment.new(mr_authors: ['Lonski Michal'], skip_comment_authors: ['Lonski Michal'])
     #DummyRule.new
   ]
 
