@@ -2,7 +2,7 @@
 Description=Gitlab monitor
 
 [Service]
-ExecStart=/usr/bin/bash -lc "bundle exec ruby GITLAB_MONITOR_DIR/app/gitlab_monitor.rb"
+ExecStart=/bin/sh -lc "bundle exec ruby GITLAB_MONITOR_DIR/app/gitlab_monitor.rb"
 WorkingDirectory=GITLAB_MONITOR_DIR/app
 Restart=always
 RestartSec=5
