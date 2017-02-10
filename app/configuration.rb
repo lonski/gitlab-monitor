@@ -29,8 +29,12 @@ module GitlabMonitor
     NewMergeRequest.new,
     #Notifies when opened merge request upvotes count raises
     MergeRequestUpvoted.new,
-    #Notifies when a new comment to opened merge request appears
-    NewMergeRequestComment.new(mr_authors: ['Lonski Michal'], skip_comment_authors: ['Lonski Michal'])
+    #Notifies about new comments. 
+    #params:
+    #  mr_authors - filter MR by authors
+    #  skip_comment_authors - filter comments by authors
+    #  subscribed_only - filter only MR to which you are subscribed
+    NewMergeRequestComment.new(skip_comment_authors: ['Lonski Michal'], subscribed_only: true)
     #DummyRule.new
   ]
 
