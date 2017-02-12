@@ -1,0 +1,10 @@
+language: 
+  - ruby
+rvm:
+  - ruby-2.3.0
+before_install: 
+  - gem install bundler
+gemfile: 
+  - app/Gemfile
+script:
+  - bundle exec ruby gitlab_monitor.rb
