@@ -17,7 +17,7 @@ module GitlabMonitor
     def run
       notifications = []
 
-      Gitlab.pipelines(PROJECT_ID, per_page: 10)
+      Gitlab.pipelines(GitlabMonitor.configuration.project_id, per_page: 10)
         .select{ |p| @branch.include?(p.ref)  }
         .select{ |p| p.status == 'failed' }
         .select{ |mr| !@already_notified.include?(mr.id) }
@@ -26,7 +26,7 @@ module GitlabMonitor
             Notification.new(
               header: 'Pipeline failed',
               body: "Ran by <b>#{p.user.name}</b> on branch <i>#{p.ref}</i>",
-              link: "#{PROJECT_URL}/pipelines/#{p.id}",
+              link: "#{GitlabMonitor.configuration.project_url}/pipelines/#{p.id}",
               icon: Icon::ERROR
             )
           @already_notified << p.id

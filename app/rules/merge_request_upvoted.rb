@@ -15,7 +15,7 @@ module GitlabMonitor
     def run
       notifications = []
 
-      Gitlab.merge_requests(PROJECT_ID, state: :opened)
+      Gitlab.merge_requests(GitlabMonitor.configuration.project_id, state: :opened)
         .select{ |mr| @upvotes[mr.id] ||= 0; mr.upvotes > @upvotes[mr.id] }        
         .each do |mr|
           notifications <<
