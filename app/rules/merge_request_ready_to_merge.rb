@@ -17,7 +17,7 @@ module GitlabMonitor
     def run
       notifications = []
 
-      Gitlab.merge_requests(PROJECT_ID, state: :opened)
+      Gitlab.merge_requests(GitlabMonitor.configuration.project_id, state: :opened)
         .select{ |mr| mr.upvotes >= @upvotes_required }
         .select{ |mr| !@already_notified.include?(mr.id) }
         .each do |mr|

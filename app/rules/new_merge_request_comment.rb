@@ -13,11 +13,11 @@ module GitlabMonitor
     def run
       notifications = []
 
-      Gitlab.merge_requests(PROJECT_ID, state: :opened)
+      Gitlab.merge_requests(GitlabMonitor.configuration.project_id, state: :opened)
         .select{ |mr| @authors.include?(mr.author.name) || @authors.empty? }
         .select{ |mr| (@subscribed_only && mr.subscribed) || !@subscribed_only }
         .each do |mr|
-          Gitlab.merge_request_notes(PROJECT_ID, mr.id)          
+          Gitlab.merge_request_notes(GitlabMonitor.configuration.project_id, mr.id)          
             .select{|n| !@comments_known.include?(n.id) }
             .select{|n| !@skip_comment_authors.include?(n.author.name) }            
             .each do |n|              
