@@ -1,10 +1,5 @@
-before_install: 
-  - \curl -L https://get.rvm.io | bash -s stable --ruby
-  - source ~/.rvm/scripts/rvm
-  - rvm get stable --autolibs=disable
-  - rvm install ruby-2.3.1
-  - rvm --default use ruby-2.3.1
-install:
-  - gem install bundler
+language: ruby
+rvm:
+  - ruby-head
 script:
-  - bundle exec ruby gitlab_monitor.rb
+  - app/gitlab_monitor.rb
