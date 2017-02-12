@@ -23,8 +23,8 @@ module GitlabMonitor
             .each do |n|              
               notifications <<
                 Notification.new(
-                  header: 'New comment',                  
-                  body: "On <i>#{mr.title}</i> by #{mr.author.name}: <br/>'<i>#{n.body}</i>'",
+                  header: 'New comment',
+                  body: "On <i>#{mr.title}</i> by #{n.author.name}: <br/>'<i>#{n.body}</i>'",
                   link: mr.web_url,
                   icon: Icon::INFO
                 )
