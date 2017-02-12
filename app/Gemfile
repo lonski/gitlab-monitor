@@ -1,12 +1,13 @@
+host_os = RbConfig::CONFIG['host_os'].match(/mswin|windows/i) ? :windows : :linux
+puts "Host OS is #{host_os}"
+
 source "https://rubygems.org"
 
 gem 'gitlab', git: 'https://github.com/NARKOZ/gitlab.git'
 
-group :linux do
+if host_os == :linux
 	gem 'gir_ffi'
-end
-
-group :windows do
+elsif host_os == :windows
 	gem 'rb-notifu'
 	gem 'launchy'
 end
