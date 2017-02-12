@@ -23,14 +23,8 @@ gem install bundler
 
 Enter gitlab_notify/app directory and install dependencies:
 
-*Linux:* 
 ```sh
-bundle install --without windows
-```
-
-*Windows:*
-```sh
-bundle install --without linux
+bundle install
 ```
 
 ### 4. Running Gitlab Monitor
