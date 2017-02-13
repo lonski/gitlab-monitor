@@ -29,11 +29,15 @@ bundle install
 
 ### 4. Running Gitlab Monitor
 
-To manualy run gitlab monitor:
+To manualy run gitlab monitor enter `app` folder and execute below command:
 
 ```sh
 bundle exec ruby gitlab_monitor.rb
 ```
+
+## Configuration
+
+Edit file `app/configuration.rb`
 
 ## Running systemd service (Linux only)
 
@@ -63,10 +67,3 @@ There are two starters prepared in 'windows-starter' directory:
 2. `windows-starter/start_in_backgroud.vbs` - runs above batch file in the background
 
 To add it to windows autostart create a shortcut of `start_in_background.vbs` file, and move it to startup folder. Startup folder can be opened by running `shell:startup` in windows 'run' window. In general it is located in `C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`.
-
-## Configuration
-
-Edit file `app/configuration.rb`
-
-* To run on Linux use `LinuxNotificationExecutor` as implementation of `NOTIFIER`
-* To run on Windows use `WindowsNotificationExecutor` as implementation of `NOTIFIER`
