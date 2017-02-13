@@ -12,9 +12,10 @@ module GitlabMonitor
   end
 
   class Configuration
-    attr_accessor :gitlab_url, :access_token, :use_ssl, 
+    attr_accessor :gitlab_url, :gitlab_api_suffix, :access_token, :use_ssl, 
                   :proxy_host, :proxy_port, :pool_interval_sec, 
-                  :project_id, :project_url, :notifier, :rules
+                  :project_id, :project_url, :notifier, :rules,
+                  :project_name, :project_namespace
   end
 
   def self.start
@@ -30,9 +31,9 @@ module GitlabMonitor
     apply_config
 
     #Run all rules, but do not process notifications, to set initial state
-    puts "Initializing rules..."
+    puts "\nInitializing rules..."
     rules.each do |r|
-      puts "\t => #{r.class.name}"
+      puts "\t=> #{r.class.name}"
       r.run
     end
 
@@ -53,15 +54,30 @@ module GitlabMonitor
     puts "\t=> SSL: #{configuration.use_ssl}"
 
     Gitlab.configure do |config|
-      config.endpoint       = configuration.gitlab_url
+      config.endpoint       = "#{configuration.gitlab_url}/#{configuration.gitlab_api_suffix}"
       config.private_token  = configuration.access_token
       config.httparty = {verify: configuration.use_ssl}
     end
 
     unless self.configuration.proxy_host.empty?
-      puts "=> Using proxy: #{configuration.proxy_host}:#{configuration.proxy_port}"
+      puts "\t=> Using proxy: #{configuration.proxy_host}:#{configuration.proxy_port}"
       Gitlab.http_proxy(configuration.proxy_host, configuration.proxy_port)
     end
+
+    get_project_info
+  end
+
+  def self.get_project_info
+    proj = Gitlab.project_search(configuration.project_name)
+            .select {|p| p.namespace.path == configuration.project_namespace}
+
+    raise "Project #{configuration.project_namespace}/#{configuration.project_name} not found!" if proj.empty?
+
+    configuration.project_id = proj[0].id
+    puts "\t=> Found project id: #{configuration.project_id}"
+
+    configuration.project_url = proj[0].web_url
+    puts "\t=> Project url is: #{configuration.project_url}"
   end
 
 end
