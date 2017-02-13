@@ -29,7 +29,7 @@ module GitlabMonitor
     config.notifier          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) \
                                   ? WindowsNotificationExecutor 
                                   : LinuxNotificationExecutor).new(time: 5)
-    
+
     config.rules = [
       #Monitors if any merge request is ready to be merged
       MergeRequestReadyToMerge.new(upvotes_required: 2),
@@ -45,7 +45,7 @@ module GitlabMonitor
       #  skip_comment_authors - filter comments by authors
       #  subscribed_only - filter only MR to which you are subscribed
       NewMergeRequestComment.new(skip_comment_authors: ['Lonski Michal'], subscribed_only: true)
-      DummyRule.new
+      #DummyRule.new
     ]
   end
 end

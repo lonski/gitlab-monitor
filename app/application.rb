@@ -28,7 +28,8 @@ module GitlabMonitor
     " \\____|_|\\__|_|\\__,_|_.__/  |_|  |_|\\___/|_| |_|_|\\__\\___/|_|   \n" \
     "                                        2017 by Michał Łoński\n\n"
 
-    apply_config
+    configure_gitlab_connection
+    update_project_info
 
     #Run all rules, but do not process notifications, to set initial state
     puts "\nInitializing rules..."
@@ -47,7 +48,7 @@ module GitlabMonitor
     
   end
 
-  def self.apply_config
+  def self.configure_gitlab_connection
     puts "Applying Gitlab configuration..."
 
     puts "\t=> Gitlab URL: #{configuration.gitlab_url}"
@@ -63,11 +64,9 @@ module GitlabMonitor
       puts "\t=> Using proxy: #{configuration.proxy_host}:#{configuration.proxy_port}"
       Gitlab.http_proxy(configuration.proxy_host, configuration.proxy_port)
     end
-
-    get_project_info
   end
 
-  def self.get_project_info
+  def self.update_project_info
     proj = Gitlab.project_search(configuration.project_name)
             .select {|p| p.namespace.path == configuration.project_namespace}
 
