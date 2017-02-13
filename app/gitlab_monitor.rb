@@ -12,5 +12,3 @@ require "#{project_root}/application.rb"
 require "#{project_root}/configuration.rb"
 
 GitlabMonitor.start
-
-

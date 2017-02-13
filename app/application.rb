@@ -28,6 +28,7 @@ module GitlabMonitor
     " \\____|_|\\__|_|\\__,_|_.__/  |_|  |_|\\___/|_| |_|_|\\__\\___/|_|   \n" \
     "                                        2017 by Michał Łoński\n\n"
 
+    puts "Applying Gitlab configuration..."
     configure_gitlab_connection
     update_project_info
 
@@ -49,8 +50,6 @@ module GitlabMonitor
   end
 
   def self.configure_gitlab_connection
-    puts "Applying Gitlab configuration..."
-
     puts "\t=> Gitlab URL: #{configuration.gitlab_url}"
     puts "\t=> SSL: #{configuration.use_ssl}"
 
