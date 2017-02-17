@@ -18,7 +18,7 @@ module GitlabMonitor
           icon = 'dialog-error'
       end
 
-      hello = Notify::Notification.new(n.header, n.generate_html_body, icon)
+      hello = Notify::Notification.new(n.header, LINK_ENABLED ? n.generate_html_body : n.body, icon)
       hello.timeout = @timeout
       hello.show
     end

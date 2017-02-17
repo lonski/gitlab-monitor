@@ -29,6 +29,7 @@ module GitlabMonitor
     config.notifier          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) \
                                   ? WindowsNotificationExecutor
                                   : LinuxNotificationExecutor).new(time: 5)
+    config.link_enabled        = true
 
     config.rules = [
       #Monitors if any merge request is ready to be merged
