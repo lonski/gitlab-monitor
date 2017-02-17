@@ -1,4 +1,4 @@
-module GitlabMonitor    
+module GitlabMonitor
   GitlabMonitor.configure do |config|
     #Gitlab API URL
     config.gitlab_url        = '<your_gitlab_url>'
@@ -27,7 +27,7 @@ module GitlabMonitor
     #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
     #You can use equations like 60*5 -> 5 minutes
     config.notifier          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) \
-                                  ? WindowsNotificationExecutor 
+                                  ? WindowsNotificationExecutor
                                   : LinuxNotificationExecutor).new(time: 5)
 
     config.rules = [
