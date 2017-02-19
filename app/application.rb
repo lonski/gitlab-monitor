@@ -15,7 +15,7 @@ module GitlabMonitor
     attr_accessor :gitlab_url, :gitlab_api_suffix, :access_token, :use_ssl, 
                   :proxy_host, :proxy_port, :pool_interval_sec, 
                   :project_id, :project_url, :notifier, :rules,
-                  :project_name, :project_namespace
+                  :project_name, :project_namespace, :link_enabled
   end
 
   def self.start

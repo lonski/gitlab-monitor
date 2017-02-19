@@ -10,7 +10,7 @@ module GitlabMonitor
     config.use_ssl           = true
 
     #Proxy configuration. Leave proxy host blank if none.
-    config.proxy_host        = ""
+    config.proxy_host        = ''
     config.proxy_port        = 8080
 
     #Amount of sleep between executing rules
