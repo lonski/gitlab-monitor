@@ -19,8 +19,7 @@ module GitlabMonitor
       end
 
       hello = Notify::Notification.new(n.header,
-        GitlabMonitor.configuration.link_enabled ? n.generate_html_body : n.body,
-        icon)
+        GitlabMonitor.configuration.link_enabled ? n.generate_html_body : n.body, icon)
       hello.timeout = @timeout
       hello.show
     end

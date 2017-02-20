@@ -42,7 +42,7 @@ module GitlabMonitor
     puts "\nMonitor started."
     while true
       rules.each do |rule|
-        rule.run.each{ |notification| notifier.execute(notification) }
+        rule.run.each { |notification| notifier.execute(notification) }
       end
       sleep(configuration.pool_interval_sec)
     end
@@ -67,7 +67,7 @@ module GitlabMonitor
 
   def self.update_project_info
     proj = Gitlab.project_search(configuration.project_name)
-            .select {|p| p.namespace.path == configuration.project_namespace}
+            .select { |p| p.namespace.path == configuration.project_namespace }
 
     raise "Project #{configuration.project_namespace}/#{configuration.project_name} not found!" if proj.empty?
 
