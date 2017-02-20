@@ -26,10 +26,8 @@ module GitlabMonitor
 
     #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
     #You can use equations like 60*5 -> 5 minutes
-    config.notifier          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) \
-                                  ? WindowsNotificationExecutor
-                                  : LinuxNotificationExecutor).new(time: 5)
-    config.link_enabled        = true
+    config.notifier_timeout  = 5
+    config.link_enabled      = true
 
     config.rules = [
       #Monitors if any merge request is ready to be merged

@@ -2,6 +2,7 @@ module GitlabMonitor
   class LinuxNotificationExecutor
     def initialize(options = {})
       @timeout = options[:time] * 1000 || 0
+      @simple = options[:simple_html]
       require 'gir_ffi'
       GirFFI.setup :Notify
       Notify.init("Gitlab Monitor")
@@ -18,8 +19,7 @@ module GitlabMonitor
           icon = 'dialog-error'
       end
 
-      hello = Notify::Notification.new(n.header,
-        GitlabMonitor.configuration.link_enabled ? n.generate_html_body : n.body, icon)
+      hello = Notify::Notification.new(n.header, @simple ? n.generate_html_body : n.body, icon)
       hello.timeout = @timeout
       hello.show
     end

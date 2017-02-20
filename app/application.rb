@@ -7,14 +7,19 @@ module GitlabMonitor
   def self.configure
     self.configuration ||= Configuration.new
     yield(configuration)
-    self.notifier = configuration.notifier
+    self.notifier = (windows? ? WindowsNotificationExecutor : LinuxNotificationExecutor
+            ).new(time: configuration.notifier_timeout, simple_html: configuration.link_enabled)
     self.rules = configuration.rules
+  end
+
+  def self.windows?
+    RbConfig::CONFIG['host_os'].match(/mswin|windows/i)
   end
 
   class Configuration
     attr_accessor :gitlab_url, :gitlab_api_suffix, :access_token, :use_ssl, 
                   :proxy_host, :proxy_port, :pool_interval_sec, 
-                  :project_id, :project_url, :notifier, :rules,
+                  :project_id, :project_url, :notifier_timeout, :rules,
                   :project_name, :project_namespace, :link_enabled
   end
 
