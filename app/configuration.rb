@@ -27,7 +27,7 @@ module GitlabMonitor
     #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
     #You can use equations like 60*5 -> 5 minutes
     config.notifier_timeout  = 5
-    config.link_enabled      = true
+    config.simple_html       = false
 
     config.rules = [
       #Monitors if any merge request is ready to be merged

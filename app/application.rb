@@ -8,7 +8,7 @@ module GitlabMonitor
     self.configuration ||= Configuration.new
     yield(configuration)
     self.notifier = (windows? ? WindowsNotificationExecutor : LinuxNotificationExecutor
-            ).new(time: configuration.notifier_timeout, simple_html: configuration.link_enabled)
+            ).new(time: configuration.notifier_timeout, simple_html: configuration.simple_html)
     self.rules = configuration.rules
   end
 
@@ -20,7 +20,7 @@ module GitlabMonitor
     attr_accessor :gitlab_url, :gitlab_api_suffix, :access_token, :use_ssl, 
                   :proxy_host, :proxy_port, :pool_interval_sec, 
                   :project_id, :project_url, :notifier_timeout, :rules,
-                  :project_name, :project_namespace, :link_enabled
+                  :project_name, :project_namespace, :simple_html
   end
 
   def self.start
