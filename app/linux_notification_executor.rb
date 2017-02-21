@@ -19,7 +19,6 @@ module GitlabMonitor
       end
 
       hello = Notify::Notification.new(n.header, @simple ? strip_complex_tags(n.body) : n.generate_html_body, icon)
-      puts "Stripped: #{strip_complex_tags(n.body)}"
       hello.timeout = @timeout
       hello.show
     end
