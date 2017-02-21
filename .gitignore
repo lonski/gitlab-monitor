@@ -1,3 +1,4 @@
 Gemfile.lock
-app/.bundle
+**/.bundle
 /.project
+.idea/

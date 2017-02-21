@@ -7,15 +7,20 @@ module GitlabMonitor
   def self.configure
     self.configuration ||= Configuration.new
     yield(configuration)
-    self.notifier = configuration.notifier
+    self.notifier = (windows? ? WindowsNotificationExecutor : LinuxNotificationExecutor
+            ).new(time: configuration.notification_timeout, simple_html: configuration.simple_html)
     self.rules = configuration.rules
+  end
+
+  def self.windows?
+    RbConfig::CONFIG['host_os'].match(/mswin|windows/i)
   end
 
   class Configuration
     attr_accessor :gitlab_url, :gitlab_api_suffix, :access_token, :use_ssl, 
                   :proxy_host, :proxy_port, :pool_interval_sec, 
-                  :project_id, :project_url, :notifier, :rules,
-                  :project_name, :project_namespace
+                  :project_id, :project_url, :notification_timeout, :rules,
+                  :project_name, :project_namespace, :simple_html
   end
 
   def self.start
@@ -42,7 +47,7 @@ module GitlabMonitor
     puts "\nMonitor started."
     while true
       rules.each do |rule|
-        rule.run.each{ |notification| notifier.execute(notification) }
+        rule.run.each { |notification| notifier.execute(notification) }
       end
       sleep(configuration.pool_interval_sec)
     end
@@ -67,7 +72,7 @@ module GitlabMonitor
 
   def self.update_project_info
     proj = Gitlab.project_search(configuration.project_name)
-            .select {|p| p.namespace.path == configuration.project_namespace}
+            .select { |p| p.namespace.path == configuration.project_namespace }
 
     raise "Project #{configuration.project_namespace}/#{configuration.project_name} not found!" if proj.empty?
 

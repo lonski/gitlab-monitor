@@ -1,4 +1,4 @@
-module GitlabMonitor    
+module GitlabMonitor
   GitlabMonitor.configure do |config|
     #Gitlab API URL
     config.gitlab_url        = '<your_gitlab_url>'
@@ -10,7 +10,7 @@ module GitlabMonitor
     config.use_ssl           = true
 
     #Proxy configuration. Leave proxy host blank if none.
-    config.proxy_host        = ""
+    config.proxy_host        = ''
     config.proxy_port        = 8080
 
     #Amount of sleep between executing rules
@@ -26,9 +26,8 @@ module GitlabMonitor
 
     #Implementation of class responsible for showing notifications in system. Specify hide timeout [s].
     #You can use equations like 60*5 -> 5 minutes
-    config.notifier          = (RbConfig::CONFIG['host_os'].match(/mswin|windows/i) \
-                                  ? WindowsNotificationExecutor 
-                                  : LinuxNotificationExecutor).new(time: 5)
+    config.notification_timeout  = 5
+    config.simple_html       = false
 
     config.rules = [
       #Monitors if any merge request is ready to be merged
