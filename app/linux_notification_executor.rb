@@ -9,7 +9,6 @@ module GitlabMonitor
     end
 
     def execute(n) 
-      icon = ''
       case n.icon
         when Icon::INFO
           icon = 'dialog-information'
@@ -19,9 +18,15 @@ module GitlabMonitor
           icon = 'dialog-error'
       end
 
-      hello = Notify::Notification.new(n.header, @simple ? n.body : n.generate_html_body, icon)
+      hello = Notify::Notification.new(n.header, @simple ? strip_complex_tags(n.body) : n.generate_html_body, icon)
+      puts "Stripped: #{strip_complex_tags(n.body)}"
       hello.timeout = @timeout
       hello.show
     end
+
+    private
+      def strip_complex_tags(str)
+        str.gsub(/<\/?(?:[^biu]|[^>\/]{2,})\/?>/, '')
+      end
   end
 end
