@@ -73,6 +73,7 @@ module GitlabMonitor
   def self.update_project_info
     proj = Gitlab.project_search(configuration.project_name)
             .select { |p| p.namespace.path == configuration.project_namespace }
+            .select { |p| p.name == configuration.project_name }
 
     raise "Project #{configuration.project_namespace}/#{configuration.project_name} not found!" if proj.empty?
 
