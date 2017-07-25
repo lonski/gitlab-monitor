@@ -5,10 +5,10 @@ module GitlabMonitor
       @simple = options[:simple_html]
       require 'gir_ffi'
       GirFFI.setup :Notify
-      Notify.init("Gitlab Monitor")
+      Notify.init('Gitlab Monitor')
     end
 
-    def execute(n) 
+    def execute(n)
       case n.icon
         when Icon::INFO
           icon = 'dialog-information'
