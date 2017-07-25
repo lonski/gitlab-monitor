@@ -16,16 +16,29 @@ module GitlabMonitor
           icon = 'dialog-warning'
         when Icon::ERROR
           icon = 'dialog-error'
+        else
+          icon = nil
       end
 
-      hello = Notify::Notification.new(n.header, @simple ? strip_complex_tags(n.body) : n.generate_html_body, icon)
+      body = @simple ? strip_complex_tags(n.body) : n.generate_html_body
+      puts "Body to send: #{body}"
+      hello = Notify::Notification.new(n.header, body, icon)
       hello.timeout = @timeout
-      hello.show
+      show_notification(hello)
     end
 
     private
+      def show_notification(hello)
+        begin
+          hello.show
+        rescue RuntimeError => e
+          STDERR.puts "Error occurred while showing notification with following body: #{hello.body}"
+          STDERR.puts e
+        end
+      end
+
       def strip_complex_tags(str)
-        str.gsub(/<\/?(?:[^biu]|[^>\/]{2,})\/?>/, '')
+        str.gsub(/<br\s?\/?>/, "\n").gsub(/<\/?(?:[^biu]|[^>\/]{2,})\/?>/, '')
       end
   end
 end
