@@ -21,7 +21,6 @@ module GitlabMonitor
       end
 
       body = @simple ? strip_complex_tags(n.body) : n.generate_html_body
-      puts "Body to send: #{body}"
       hello = Notify::Notification.new(n.header, body, icon)
       hello.timeout = @timeout
       show_notification(hello)
