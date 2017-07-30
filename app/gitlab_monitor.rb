@@ -3,6 +3,7 @@ require 'gitlab'
 require_relative 'notification'
 require_relative 'linux_notification_executor'
 require_relative 'windows_notification_executor'
+require_relative 'console_notification_executor'
 
 project_root = File.dirname(File.absolute_path(__FILE__))
 

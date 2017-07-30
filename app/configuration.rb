@@ -29,6 +29,9 @@ module GitlabMonitor
     config.notification_timeout  = 5
     config.simple_html       = false
 
+    config.notifier = (windows? ? WindowsNotificationExecutor : LinuxNotificationExecutor)
+      .new(time: config.notification_timeout, simple_html: config.simple_html)
+
     config.rules = [
       #Monitors if any merge request is ready to be merged
       MergeRequestReadyToMerge.new(upvotes_required: 2),
