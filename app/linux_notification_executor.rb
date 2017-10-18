@@ -3,7 +3,12 @@ module GitlabMonitor
     def initialize(options = {})
       @timeout = options[:time] * 1000 || 0
       @simple = options[:simple_html]
-      require 'gir_ffi'
+      @random = Random.new
+      require 'gir_ffi-gtk3'
+      Thread.new {
+        Gtk::init
+        Gtk::main
+      }
       GirFFI.setup :Notify
       Notify.init('Gitlab Monitor')
     end
@@ -23,6 +28,9 @@ module GitlabMonitor
       body = @simple ? strip_complex_tags(n.body) : n.generate_html_body
       hello = Notify::Notification.new(n.header, body, icon)
       hello.timeout = @timeout
+      hello.add_action("link" + @random.rand(8<<32).to_s(32), "View") {
+        `xdg-open #{n.link}`
+      }
       show_notification(hello)
     end
 

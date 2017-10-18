@@ -2,7 +2,8 @@
 
 Monitors gitlab project and show system notifications when an event occurs. Running on Windows and Linux.
 
-![](screen1.png)
+![](screen1.png)  
+![](screen3.png)  
 ![](screen2.png)
 
 ## Installation

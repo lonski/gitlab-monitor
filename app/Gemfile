@@ -7,6 +7,7 @@ gem 'gitlab', git: 'https://github.com/NARKOZ/gitlab.git'
 
 if host_os == :linux
 	gem 'gir_ffi'
+	gem 'gir_ffi-gtk'
 elsif host_os == :windows
 	gem 'rb-notifu'
 	gem 'launchy'
